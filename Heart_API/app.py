@@ -1,12 +1,10 @@
-import webbrowser
+
 from flask import Flask, render_template, url_for, flash, redirect
 import joblib
 from flask import request
 import numpy as np
-from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__, template_folder='templates')
-run_with_ngrok(app)
 @app.route("/")
 
 @app.route("/Heart")
@@ -37,5 +35,4 @@ def predict():
     return(render_template("result.html", prediction_text=prediction))       
 
 if __name__ == "__main__":
-    webbrowser.open_new('http://127.0.0.1:5000/')
-    app.run()
+    app.run(debug=False,host='0.0.0.0')
